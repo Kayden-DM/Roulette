@@ -1,3 +1,5 @@
+This README is made with AI
+
 🎰 Python Roulette Game
 A simple command-line roulette game built with Python. Players start with 100 money and can place bets on either colours (red, black, or green) or numbers (0–36). Correct guesses pay out at different multipliers depending on how close the bet was. The game ends when the player runs out of money or chooses to leave. It's a great beginner project for learning about random numbers, loops, conditionals, and user input validation in Python.
 
