@@ -1,23 +1,45 @@
-Roulette Game
-A command-line Python roulette game where the player starts with $100 and bets on colours or numbers, with payouts for exact matches, close guesses, or correct colours.
+## Roulette
+A command-line roulette game written in Python. It uses the random module to spin a number between 0 and 36, and lets the player bet on colours or numbers with a starting balance of 100.
 
-Concepts Used
-Random Module — random.randint(0, 36) simulates the roulette wheel spin.
+## Features
+Colour Betting — Bet on red (even), black (odd), or green (0), with a 1.5x payout for red/black and 5x for green.
 
-Lists — red and black lists store the valid numbers for each colour to check bets.
+Number Betting — Bet on a number between 0 and 36, with a 5x payout for an exact hit and a 2.5x payout for being within range.
 
-While Loops with Validation — nested loops keep re-prompting until the player enters a valid bet, colour, or number.
+Bet Validation — Rejects bets that are non-numeric, non-positive, or larger than the current balance.
 
-Features
-Two Game Modes — bet on colours (red/black/green) or specific numbers (0–36).
+Balance Tracking — Deducts each bet before the spin and adds winnings back to the player's money.
 
-Tiered Payouts — 5x for exact hits, 2.5x for numbers within 5, 1.5x for correct colour.
+Game Over — Ends the game automatically when the player runs out of money.
 
-Balance Tracking — money is deducted on bet and paid out on a win, ending when it hits zero.
+Continue or Leave — Prompts the player to keep playing or exit after each loss.
 
-Improvements
-Deduplicate Code — the colour and number branches repeat the bet/quit logic; extract into shared functions.
+Input Validation — Re-prompts on invalid modes, colours, numbers, and menu choices using try/except ValueError.
 
-Fix Payout Bug — the win message says "within 3" but the code checks ±5, and the "close" check is off (uses a 10-number range, not symmetric around the guess).
+## Technologies Used
+text
+| Technology | Purpose |
+|---|---|
+| Python | Application logic |
+| `random` | Spins a number between 0 and 36 |
+| Lists (`red`, `black`, `green`) | Define the roulette colour groups |
+| `input()` / `print()` | Console interaction |
+| `float()` / `int()` | Parses bets and number guesses |
+| `try / except` | Handles invalid numeric input |
+| `while True` loops | Keeps the game and prompts running |
+<!-- -->
+## How to Use It
+Install Python 3.6 or newer from python.org and make sure it's added to your PATH.
 
-Handle Decimal Money — round balances and payouts to 2 decimal places to avoid float drift like 149.99999.
+Save the code as roulette.py.
+
+Open a terminal in the folder containing the file.
+
+Run python roulette.py.
+
+Choose c for colours or n for numbers, enter a bet amount, then make your guess and follow the prompts to continue or leave.
+
+## Improvements
+Fix the near-miss range — range(number - 5, number + 6) gives an 11-number window, not the "within 3" stated in the rules; use range(number - 3, number + 4) to match the instructions.
+
+Fix the payout logic — the bet is deducted before the spin and winnings are added as a multiplier of the bet only, so a win can return less than the stake; either add the stake back on a win or don't deduct it up front.
